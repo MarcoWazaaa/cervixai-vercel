@@ -1,0 +1,137 @@
+<div class="app-layout">
+  <header class="top-navbar">
+    <div class="brand-title">CervixAI Clinical</div>
+    <div class="navbar-actions">
+      <span class="material-symbols-outlined icon-btn">notifications</span>
+      <span class="material-symbols-outlined icon-btn">settings</span>
+      <div class="user-profile">
+        <img src="https://via.placeholder.com/32" alt="Dr. García" class="avatar-small">
+        <span class="user-name">Dr. García</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="main-body">
+    <aside class="sidebar">
+      <span class="sidebar-label">PANEL DE CONTROL</span>
+      <nav class="nav-menu">
+        <a routerLink="/dashboard" class="nav-item">
+          <span class="material-symbols-outlined">grid_view</span> Dashboard
+        </a>
+        <a routerLink="/historial" class="nav-item active">
+          <span class="material-symbols-outlined">history</span> Historial
+        </a>
+        <a class="nav-item" style="cursor: pointer;">
+          <span class="material-symbols-outlined">biotech</span> Nueva Clasificación
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <button class="btn-primary full-width">
+          <span class="material-symbols-outlined">add</span> Iniciar Análisis
+        </button>
+      </div>
+    </aside>
+
+    <main class="content-area">
+      <div class="page-header">
+        <div>
+          <h1>Historial de Pacientes</h1>
+          <p>Registros clínicos y diagnósticos procesados por CervixAI.</p>
+        </div>
+        <div class="header-tools">
+          <div class="search-box">
+            <span class="material-symbols-outlined">search</span>
+            <input type="text" placeholder="Buscar por ID o Fecha...">
+          </div>
+          <button class="btn-outline">
+            <span class="material-symbols-outlined">filter_list</span> Filtrar
+          </button>
+        </div>
+      </div>
+
+      <div class="card">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>FECHA DE ESTUDIO</th>
+              <th>MUESTRA (MINIATURA)</th>
+              <th>ID PACIENTE</th>
+              <th>RESULTADO</th>
+              <th>CONFIANZA AI</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody *ngIf="!loading && items.length > 0; else noItems">
+            <tr *ngFor="let item of items">
+              <td>{{ item.analyzedAt }}</td>
+              <td><img src="https://via.placeholder.com/80x40" class="thumb" alt="Muestra"></td>
+              <td>#PX-{{ item.id }}</td>
+              <td>
+                <span class="badge" [ngClass]="item.result === 'positivo' ? 'badge-anormal' : 'badge-normal'">
+                  {{ item.result === 'positivo' ? 'ANORMAL' : 'NORMAL' }}
+                </span>
+              </td>
+              <td>
+                <div class="confidence-box">
+                  <span class="conf-value green-text">--</span>
+                  <div class="progress-bar"><div class="fill green-fill" style="width: 75%"></div></div>
+                </div>
+              </td>
+              <td><span class="material-symbols-outlined icon-link">open_in_new</span></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <ng-template #noItems>
+          <tr>
+            <td colspan="6" class="empty-state">
+              <div *ngIf="loading">Cargando historial...</div>
+              <div *ngIf="!loading && !errorMessage">No hay registros disponibles.</div>
+              <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+            </td>
+          </tr>
+        </ng-template>
+
+        <div class="pagination-footer">
+          <span class="showing-text">Mostrando 1 - 10 de 156 resultados</span>
+          <div class="pagination-controls">
+            <button class="page-btn">&lt;</button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <span class="dots">...</span>
+            <button class="page-btn">16</button>
+            <button class="page-btn">&gt;</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="summary-grid">
+        <div class="summary-card">
+          <div class="sc-header"><span class="material-symbols-outlined">bar_chart</span> Total Analizados</div>
+          <h3>1,254</h3>
+          <p class="trend positive"><span class="material-symbols-outlined">trending_up</span> +12% vs mes anterior</p>
+        </div>
+        <div class="summary-card">
+          <div class="sc-header"><span class="material-symbols-outlined">check_circle</span> Confianza Promedio</div>
+          <h3>96.8%</h3>
+          <p class="trend neutral">Estabilidad clínica óptima</p>
+        </div>
+        <div class="summary-card critical">
+          <div class="sc-header"><span class="material-symbols-outlined red-icon">error</span> Alertas Críticas</div>
+          <h3 class="red-text">3</h3>
+          <p class="trend negative">Pendientes de revisión manual</p>
+        </div>
+      </div>
+    </main>
+  </div>
+  
+  <footer class="dashboard-footer">
+    <p>© 2024 CervixAI System. <strong>Uso Clínico Profesional.</strong></p>
+    <div class="footer-links">
+      <a href="#">Soporte Técnico</a>
+      <a href="#">Privacidad de Datos</a>
+      <a href="#">Protocolo Médico</a>
+    </div>
+  </footer>
+</div>

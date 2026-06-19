@@ -1,0 +1,128 @@
+<div class="dashboard-layout">
+  <aside class="sidebar">
+    <div class="brand">
+      <h2>CervixAI</h2>
+      <p>Clinical Suite</p>
+    </div>
+    
+    <nav class="nav-menu">
+      <a routerLink="/dashboard" class="nav-item active">
+        <span class="material-symbols-outlined">grid_view</span> Dashboard
+      </a>
+      <a routerLink="/historial" class="nav-item">
+        <span class="material-symbols-outlined">history</span> Historial
+      </a>
+      <a class="nav-item" style="cursor: pointer;">
+        <span class="material-symbols-outlined">biotech</span> Nueva Clasificación
+      </a>
+    </nav>
+
+    <div class="user-profile">
+      <img src="https://via.placeholder.com/40" alt="Avatar Doctor" class="avatar">
+      <div class="user-info">
+        <strong>Dr. [Nombre]</strong>
+        <span>Oncología Ginecológica</span>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <span class="breadcrumb">Dashboard Principal</span>
+      <div class="topbar-actions">
+        <span class="material-symbols-outlined icon-btn">notifications</span>
+        <span class="material-symbols-outlined icon-btn">settings</span>
+      </div>
+    </header>
+
+    <div class="content-area">
+      <div class="welcome-section">
+        <h1>Bienvenido, Dr. {{ userName }}</h1>
+        <p>Panel de control clínico para el análisis asistido por IA.</p>
+      </div>
+
+      <div *ngIf="loading" class="loading-message">Cargando datos del dashboard...</div>
+      <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+      <div class="summary-grid" *ngIf="!loading && !errorMessage">
+        <div class="summary-card">
+          <div class="sc-header"><span class="material-symbols-outlined">bar_chart</span> Total Analizados</div>
+          <h3>{{ summary.totalAnalyses }}</h3>
+          <p class="trend positive"><span class="material-symbols-outlined">trending_up</span> Datos de análisis recientes</p>
+        </div>
+        <div class="summary-card">
+          <div class="sc-header"><span class="material-symbols-outlined">check_circle</span> Resultados Positivos</div>
+          <h3>{{ summary.positiveCount }}</h3>
+          <p class="trend neutral">Casos con resultado positivo</p>
+        </div>
+        <div class="summary-card critical">
+          <div class="sc-header"><span class="material-symbols-outlined red-icon">error</span> Resultados Negativos</div>
+          <h3 class="red-text">{{ summary.negativeCount }}</h3>
+          <p class="trend negative">Casos con resultado negativo</p>
+        </div>
+      </div>
+
+      <div class="action-card">
+        <div class="icon-box">
+          <span class="material-symbols-outlined">add</span>
+        </div>
+        <h2>Nueva Clasificación</h2>
+        <p>Inicie un nuevo proceso de análisis de imágenes colposcópicas<br>utilizando el motor de visión computacional de CervixAI.</p>
+        <button class="btn-primary" (click)="startAnalysis()">Iniciar Análisis</button>
+      </div>
+
+      <div class="table-card">
+        <div class="table-header">
+          <h3>Últimos Análisis Realizados</h3>
+          <a routerLink="/historial" class="link-history">Ver Historial Completo</a>
+        </div>
+        
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>FECHA</th>
+              <th>ID PACIENTE</th>
+              <th>TIPO DE PRUEBA</th>
+              <th>RESULTADO</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>24 Oct 2023</td>
+              <td>#CX-9842</td>
+              <td>Colposcopia IA</td>
+              <td><span class="badge badge-normal">NORMAL</span></td>
+            </tr>
+            <tr>
+              <td>24 Oct 2023</td>
+              <td>#CX-9840</td>
+              <td>Screening Preventivo</td>
+              <td><span class="badge badge-anormal">ANORMAL</span></td>
+            </tr>
+            <tr>
+              <td>23 Oct 2023</td>
+              <td>#CX-9835</td>
+              <td>Colposcopia IA</td>
+              <td><span class="badge badge-normal">NORMAL</span></td>
+            </tr>
+            <tr>
+              <td>23 Oct 2023</td>
+              <td>#CX-9831</td>
+              <td>Seguimiento Clínico</td>
+              <td><span class="badge badge-normal">NORMAL</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <footer class="dashboard-footer">
+      <p>© 2024 CervixAI System. <strong>Uso Clínico Profesional.</strong></p>
+      <div class="footer-links">
+        <a href="#">Soporte Técnico</a>
+        <a href="#">Privacidad de Datos</a>
+        <a href="#">Protocolo Médico</a>
+      </div>
+    </footer>
+  </main>
+</div>

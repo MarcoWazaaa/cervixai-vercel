@@ -1,0 +1,35 @@
+.login-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f4f7fb;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  margin: -8px;
+}
+.login-header { text-align: center; margin-bottom: 24px; }
+.header-icon { font-size: 40px; color: #003399; }
+.login-header h1 { color: #003399; font-size: 24px; margin: 8px 0 4px 0; font-weight: 700; }
+.login-header p { color: #666; font-size: 14px; margin: 0; }
+.login-card { background: white; width: 100%; max-width: 400px; padding: 32px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); box-sizing: border-box; }
+.card-title { margin-bottom: 24px; }
+.card-title h2 { font-size: 18px; color: #111; margin: 0 0 4px 0; }
+.card-title p { font-size: 14px; color: #555; margin: 0; }
+.form-group { margin-bottom: 20px; }
+label { display: block; font-size: 11px; font-weight: 700; color: #555; margin-bottom: 8px; letter-spacing: 0.5px; }
+.label-row { display: flex; justify-content: space-between; align-items: center; }
+.forgot-link { font-size: 12px; color: #0055cc; text-decoration: none; font-weight: 600; }
+.input-container { position: relative; display: flex; align-items: center; }
+.input-icon { position: absolute; left: 12px; color: #8898aa; font-size: 20px; }
+.clickable-icon { left: auto; right: 12px; cursor: pointer; }
+input[type="email"], input[type="password"] { width: 100%; padding: 12px 40px; border: 1px solid #d1d9e6; border-radius: 6px; background-color: #f8faff; font-size: 14px; box-sizing: border-box; outline: none; transition: border-color 0.2s; }
+input[type="email"]:focus, input[type="password"]:focus { border-color: #003399; }
+.checkbox-group { display: flex; align-items: center; margin-bottom: 24px; }
+.checkbox-group input { margin: 0 8px 0 0; cursor: pointer; }
+.normal-case { font-weight: 400; font-size: 13px; letter-spacing: 0; margin: 0; cursor: pointer; }
+.login-btn { width: 100%; background-color: #003399; color: white; border: none; padding: 12px; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; transition: background-color 0.2s; }
+.login-btn:hover { background-color: #002266; }
+.card-footer { margin-top: 24px; padding-top: 20px; border-top: 1px solid #e1e5eb; text-align: center; }
+.card-footer p { font-size: 13px; color: #666; margin: 0; }
+.card-footer a { color: #0055cc; text-decoration: none; font-weight: 600; }
